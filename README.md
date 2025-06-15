@@ -12,32 +12,96 @@ We focus on 27 **Roman-script languages**, build language-specific files from th
 
 ---
 
+##  Objective
+
+- Extract and preprocess utterances for **27 Roman-script languages**
+- Train a **Multinomial Naive Bayes** classifier for 27-language identification
+- Group languages by continent and train classifiers to identify:
+  - **Africa**
+  - **Asia**
+  - **Europe**
+  - **North America**
+- Use **LDA** and **QDA** for continent classification
+
+---
+
+##  Dataset Details
+
+- **Source**: [MASSIVE on Huggingface](https://huggingface.co/datasets/qanastek/MASSIVE)
+- **Fields used**: `locale`, `utt`
+- **Languages**:  
+  `af-ZA`, `da-DK`, `de-DE`, `en-US`, `es-ES`, `fr-FR`, `fi-FI`, `hu-HU`, `is-IS`, `it-IT`,  
+  `jv-ID`, `lv-LV`, `ms-MY`, `nb-NO`, `nl-NL`, `pl-PL`, `pt-PT`, `ro-RO`, `ru-RU`, `sl-SL`,  
+  `sv-SE`, `sq-AL`, `sw-KE`, `tl-PH`, `tr-TR`, `vi-VN`, `cy-GB`
+  
+---
+
 ##  Tasks
 
-###  Task 1: Extract Sentences from MASSIVE
-
+### Task 1: Extract Utterances
+- Load and combine MASSIVE data across train, validation, and test splits
 - Filters only **27 Roman-script locales** from the MASSIVE dataset.
-- Creates separate `.txt` files for `train`, `validation`, and `test` sets for each locale.
-- Each file contains one sentence (`utt`) per line.
+- Output: consolidated `DataFrame` with `utt` and `locale`
 
-###  Task 2: Multinomial Naive Bayes Classifier
+---
 
-- Trains a **Multinomial Naive Bayes** classifier using bag-of-words (`CountVectorizer`).
-- Predicts one of the 27 language locales.
-- Evaluates model on `train`, `validation`, and `test` partitions using `classification_report`.
+### Task 2: Language Classification  (Multinomial Naive Bayes Classifier)
+- **Model**: `TfidfVectorizer + MultinomialNB`
+  (Trains a **Multinomial Naive Bayes** classifier using bag-of-words (`CountVectorizer`)).
+- **Labels**: 27-language locales
+- **Evaluation**: Accuracy + `classification_report` on validation and test sets
 
-###  Task 3: LDA & QDA Classifiers for Continent Prediction
+---
 
-- Maps the 27 languages to 4 continent classes:
+### Task 3: Continent Classification (LDA & QDA Classifiers)
+- **Mapping**: Locale → Country → Continent
+  Maps the 27 languages to 4 continent classes:
   - **Asia**: ms-MY, jv-ID, tl-PH, tr-TR, vi-VN
   - **Africa**: af-ZA, sw-KE
   - **Europe**: cy-GB, da-DK, de-DE, ... (most of them)
   - **North America**: en-US
-- Converts sentences to TF-IDF vectors and reduces dimensionality using `TruncatedSVD`.
-- Trains **LDA** and **QDA** (as proxies for RDA).
-- Evaluates predictions for both models.
+- **Model**: `TfidfVectorizer + TruncatedSVD + LDA/QDA`
+  (Converts sentences to TF-IDF vectors and reduces dimensionality using `TruncatedSVD`).
+- **Labels**: Africa, Asia, Europe, North America
+- **Evaluation**: Classification report + Accuracy
 
 ---
+
+##  Results
+
+### Language Classification (Multinomial Naive Bayes)
+
+| Metric     | Validation | Test     |
+|------------|------------|----------|
+| Accuracy   | ~98.4%     | ~98.3%   |
+
+### Continent Classification
+
+| Model | Validation Accuracy | Test Accuracy |
+|-------|---------------------|---------------|
+| LDA   | ~89.9%              | ~89.6%        |
+| QDA   | ~69.3%              | ~79.1%        |
+
+---
+
+##  Key Learnings
+
+- How to preprocess multilingual NLP data
+- Building classic text classification pipelines (TF-IDF + NB)
+- Label transformation for hierarchical tasks (language → region)
+- Dimensionality reduction using TruncatedSVD
+- LDA vs QDA performance in NLP tasks
+
+---
+
+##  Usage
+
+### Clone Repository
+```bash
+git clone https://github.com/Sonalikasingh17/Multilingual-Language-Classifier.git
+cd Multilingual-Language-Classifier
+```
+
 
 ## How to Run
 Run the script
@@ -53,13 +117,14 @@ python solution.py
 ---
 
 ## References
-- MASSIVE Dataset on Huggingface
-- scikit-learn documentation
+
+- [MASSIVE Dataset on Huggingface](https://huggingface.co/datasets/qanastek/MASSIVE)
+- [scikit-learn documentation](https://scikit-learn.org/stable/)
 
 ---
 ## Author
-Sonalika Singh
-
-IIT Madras
+ Sonalika Singh
+ 
+ IIT Madras
 
 
