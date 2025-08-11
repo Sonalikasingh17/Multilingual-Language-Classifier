@@ -4,7 +4,7 @@ import os
 import pandas as pd
 import numpy as np
 from datasets import load_dataset
-from sklearn.pipeline import make_pipeline
+from sklearn.pipeline import make_pipeline 
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.naive_bayes import MultinomialNB
 from sklearn.decomposition import TruncatedSVD
@@ -183,4 +183,5 @@ if __name__ == "__main__":
     # load_and_test_models() 
 
 # This script is now complete and ready for use in multilingual language classification tasks.
+
    
