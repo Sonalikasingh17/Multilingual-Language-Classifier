@@ -69,6 +69,17 @@ def show_home_page():
 
     with col1:
         st.markdown("""
+<style>
+    .feature-card {
+        background: white;
+        padding: 1.5rem;
+        border-radius: 10px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        margin: 1rem 0;
+        border-left: 4px solid #667eea;
+        color: #333;  /* makes text visible */
+    }
+</style>
         <div class="feature-card">
             <h3>🎯 High Accuracy</h3>
             <p>98%+ accuracy on language classification</p>
@@ -77,6 +88,18 @@ def show_home_page():
 
     with col2:
         st.markdown("""
+<style>
+    .feature-card {
+        background: white;
+        padding: 1.5rem;
+        border-radius: 10px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        margin: 1rem 0;
+        border-left: 4px solid #667eea;
+        color: #333;  /* makes text visible */
+    }
+</style>                    
+
         <div class="feature-card">
             <h3>🌍 27 Languages</h3>
             <p>Supports Roman-script languages</p>
@@ -85,11 +108,23 @@ def show_home_page():
 
     with col3:
         st.markdown("""
+<style>
+    .feature-card {
+        background: white;
+        padding: 1.5rem;
+        border-radius: 10px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        margin: 1rem 0;
+        border-left: 4px solid #667eea;
+        color: #333;  /* makes text visible */
+    }
+</style>
         <div class="feature-card">
             <h3>⚡ Fast Processing</h3>
             <p>Real-time predictions</p>
         </div>
         """, unsafe_allow_html=True)
+
 
 def show_prediction_page():
     st.markdown('<h1 class="main-header">🔮 Text Prediction</h1>', unsafe_allow_html=True)
