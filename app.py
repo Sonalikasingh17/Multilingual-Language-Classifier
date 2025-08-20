@@ -25,7 +25,7 @@ st.markdown("""
         font-size: 3rem;
         font-weight: bold;
         text-align: center;
-        color: olive ;
+        color: olive;
         margin-bottom: 2rem;
         user-select: none;
 }
@@ -79,7 +79,7 @@ def show_home_page():
         st.markdown("""
         <div class="feature-card">
             <h3>🎯 High Accuracy</h3>
-            <p>98%+ accuracy on language classification</p>
+            <p>98%+ accuracy on language classification </p>
         </div>
         """, unsafe_allow_html=True)
 
@@ -87,7 +87,7 @@ def show_home_page():
         st.markdown("""                   
         <div class="feature-card">
             <h3>🌍 27 Languages</h3>
-            <p>Supports Roman-script languages</p>
+            <p>Supports Roman-script languages  </p>
         </div>
         """, unsafe_allow_html=True)
 
@@ -95,7 +95,7 @@ def show_home_page():
         st.markdown("""
         <div class="feature-card">
             <h3>⚡ Fast Processing</h3>
-            <p>Real-time predictions</p>
+            <p>  Real-time predictions  </p>
         </div>
         """, unsafe_allow_html=True)
 
