@@ -1,62 +1,105 @@
 import os
 import sys
-
-import numpy as np 
-import pandas as pd
-import dill
+import joblib
 import pickle
-from sklearn.metrics import r2_score
-from sklearn.model_selection import GridSearchCV
+import yaml
+import pandas as pd
+import numpy as np
+from typing import Any, Dict, List, Tuple
+from sklearn.metrics import accuracy_score, classification_report
+from sklearn.model_selection import train_test_split
 
 from src.exception import CustomException
+from src.logger import get_logger
 
-def save_object(file_path, obj):
+logger = get_logger(__name__)
+
+def save_object(file_path: str, obj: Any) -> None:
+    """Save object to file using joblib"""
     try:
         dir_path = os.path.dirname(file_path)
-
         os.makedirs(dir_path, exist_ok=True)
 
         with open(file_path, "wb") as file_obj:
-            pickle.dump(obj, file_obj)
+            joblib.dump(obj, file_obj)
+
+        logger.info(f"Object saved successfully at {file_path}")
 
     except Exception as e:
+        logger.error(f"Error saving object: {str(e)}")
         raise CustomException(e, sys)
-    
-def evaluate_models(X_train, y_train,X_test,y_test,models,param):
+
+def load_object(file_path: str) -> Any:
+    """Load object from file using joblib"""
     try:
-        report = {}
+        if not os.path.exists(file_path):
+            raise FileNotFoundError(f"File not found: {file_path}")
 
-        for i in range(len(list(models))):
-            model = list(models.values())[i]
-            para=param[list(models.keys())[i]]
-
-            gs = GridSearchCV(model,para,cv=3)
-            gs.fit(X_train,y_train)
-
-            model.set_params(**gs.best_params_)
-            model.fit(X_train,y_train)
-
-            #model.fit(X_train, y_train)  # Train model
-
-            y_train_pred = model.predict(X_train)
-
-            y_test_pred = model.predict(X_test)
-
-            train_model_score = r2_score(y_train, y_train_pred)
-
-            test_model_score = r2_score(y_test, y_test_pred)
-
-            report[list(models.keys())[i]] = test_model_score
-
-        return report
-
-    except Exception as e:
-        raise CustomException(e, sys)
-    
-def load_object(file_path):
-    try:
         with open(file_path, "rb") as file_obj:
-            return pickle.load(file_obj)
+            obj = joblib.load(file_obj)
+
+        logger.info(f"Object loaded successfully from {file_path}")
+        return obj
 
     except Exception as e:
+        logger.error(f"Error loading object: {str(e)}")
+        raise CustomException(e, sys)
+
+def evaluate_model(y_true, y_pred, model_name: str = "Model") -> Dict[str, Any]:
+    """Evaluate model performance"""
+    try:
+        accuracy = accuracy_score(y_true, y_pred)
+        report = classification_report(y_true, y_pred, output_dict=True)
+
+        weighted_precision = report['weighted avg']['precision']
+        weighted_recall = report['weighted avg']['recall']
+        weighted_f1 = report['weighted avg']['f1-score']
+
+        metrics = {
+            'model_name': model_name,
+            'accuracy': accuracy,
+            'weighted_precision': weighted_precision,
+            'weighted_recall': weighted_recall,
+            'weighted_f1_score': weighted_f1,
+            'classification_report': report
+        }
+
+        logger.info(f"Model evaluation completed for {model_name}")
+        return metrics
+
+    except Exception as e:
+        logger.error(f"Error evaluating model: {str(e)}")
+        raise CustomException(e, sys)
+
+def get_language_continent_mapping():
+    """Get mapping of language locales to continents"""
+    continent_lookup = {
+        'ZA': 'Africa', 'KE': 'Africa', 'AL': 'Europe', 'GB': 'Europe', 'DK': 'Europe', 'DE': 'Europe',
+        'ES': 'Europe', 'FR': 'Europe', 'FI': 'Europe', 'HU': 'Europe', 'IS': 'Europe', 'IT': 'Europe',
+        'ID': 'Asia', 'LV': 'Europe', 'MY': 'Asia', 'NO': 'Europe', 'NL': 'Europe', 'PL': 'Europe',
+        'PT': 'Europe', 'RO': 'Europe', 'RU': 'Europe', 'SL': 'Europe', 'SE': 'Europe', 'PH': 'Asia',
+        'TR': 'Asia', 'VN': 'Asia', 'US': 'North America'
+    }
+
+    def map_continent(locale):
+        country = locale.split('-')[1]
+        return continent_lookup.get(country, 'Unknown')
+
+    return map_continent
+
+def get_supported_languages() -> List[str]:
+    """Get list of supported languages"""
+    return [
+        'af-ZA', 'da-DK', 'de-DE', 'en-US', 'es-ES', 'fr-FR', 'fi-FI', 'hu-HU', 'is-IS', 'it-IT',
+        'jv-ID', 'lv-LV', 'ms-MY', 'nb-NO', 'nl-NL', 'pl-PL', 'pt-PT', 'ro-RO', 'ru-RU', 'sl-SL',
+        'sv-SE', 'sq-AL', 'sw-KE', 'tl-PH', 'tr-TR', 'vi-VN', 'cy-GB'
+    ]
+
+def create_directory(directory_path: str) -> None:
+    """Create directory if it doesn't exist"""
+    try:
+        os.makedirs(directory_path, exist_ok=True)
+        logger.info(f"Directory created/verified: {directory_path}")
+    except Exception as e:
+        logger.error(f"Error creating directory: {str(e)}")
         raise CustomException(e, sys)
