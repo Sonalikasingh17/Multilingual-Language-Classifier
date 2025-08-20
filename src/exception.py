@@ -1,4 +1,3 @@
-
 import sys
 from src.logger import logging
 
@@ -14,6 +13,7 @@ def error_message_detail(error,error_detail:sys):
         file_name, line_number, str(error)
     )
 
+
     return error_message
 
     
@@ -25,6 +25,12 @@ class CustomException(Exception):
     
     def __str__(self):
         return self.error_message
+    
+
+  
+
+
+
     
 
 
