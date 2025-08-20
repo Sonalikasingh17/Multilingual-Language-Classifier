@@ -20,24 +20,30 @@ st.set_page_config(
 
 # Custom CSS
 st.markdown("""
-<style>
+<style>      
     .main-header {
         font-size: 3rem;
         font-weight: bold;
         text-align: center;
-        background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
+        color: olive ;
         margin-bottom: 2rem;
-    }
-    .feature-card {
-        background: white;
+        user-select: none;
+}
+    .feature-card { 
+        background:  #e5efd2;          /* Light neutral background */
         padding: 1.5rem;
         border-radius: 10px;
-        box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        box-shadow: 0 2px 8px rgba(0,0,0,0.08);
         margin: 1rem 0;
         border-left: 4px solid #667eea;
+        color: #222;                 /* Dark, readable text */
+        font-size: 1.2rem;
     }
+    .feature-card h3 {
+        margin-top: 0;
+        color: #332888;              /* Optional: feature title color */
+    }
+           
 </style>
 """, unsafe_allow_html=True)
 
@@ -54,32 +60,23 @@ def main():
         show_training_page()
 
 def show_home_page():
-    st.markdown('<h1 class="main-header">🌐 Multilingual Language Classifier</h1>', unsafe_allow_html=True)
+    st.markdown(
+        '<h1 class="main-header">🌐 Multilingual Language Classifier 🌐</h1>', unsafe_allow_html=True)
 
     st.markdown("""
-    ### Advanced AI-powered language and continent classification using the MASSIVE dataset
+    ### 🧠 Advanced AI-powered language and continent classification using the MASSIVE dataset
 
     This application can classify text into:
-    - **27 Roman-script languages** with 98%+ accuracy
-    - **4 continents** (Europe, Asia, Africa, North America)
+    - 🌍 **27 Roman-script languages** with 98%+ accuracy
+    - 🗺️ **4 continents** (Europe, Asia, Africa, North America)
     """)
+
 
     # Feature cards
     col1, col2, col3 = st.columns(3)
 
     with col1:
         st.markdown("""
-<style>
-    .feature-card {
-        background: white;
-        padding: 1.5rem;
-        border-radius: 10px;
-        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-        margin: 1rem 0;
-        border-left: 4px solid #667eea;
-        color: #333;  /* makes text visible */
-    }
-</style>
         <div class="feature-card">
             <h3>🎯 High Accuracy</h3>
             <p>98%+ accuracy on language classification</p>
@@ -87,19 +84,7 @@ def show_home_page():
         """, unsafe_allow_html=True)
 
     with col2:
-        st.markdown("""
-<style>
-    .feature-card {
-        background: white;
-        padding: 1.5rem;
-        border-radius: 10px;
-        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-        margin: 1rem 0;
-        border-left: 4px solid #667eea;
-        color: #333;  /* makes text visible */
-    }
-</style>                    
-
+        st.markdown("""                   
         <div class="feature-card">
             <h3>🌍 27 Languages</h3>
             <p>Supports Roman-script languages</p>
@@ -108,17 +93,6 @@ def show_home_page():
 
     with col3:
         st.markdown("""
-<style>
-    .feature-card {
-        background: white;
-        padding: 1.5rem;
-        border-radius: 10px;
-        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-        margin: 1rem 0;
-        border-left: 4px solid #667eea;
-        color: #333;  /* makes text visible */
-    }
-</style>
         <div class="feature-card">
             <h3>⚡ Fast Processing</h3>
             <p>Real-time predictions</p>
