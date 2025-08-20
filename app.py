@@ -6,6 +6,7 @@ import os
 # Add src to path
 sys.path.append(os.path.join(os.path.dirname(__file__), 'src'))
 
+from src.utils import ensure_artifacts_exist
 from src.pipeline.predict_pipeline import PredictionPipeline, create_prediction_pipeline
 from src.pipeline.train_pipeline import TrainingPipeline
 
@@ -79,7 +80,7 @@ def show_home_page():
         st.markdown("""
         <div class="feature-card">
             <h3>🎯 High Accuracy</h3>
-            <p>98%+ accuracy on language classification </p>
+            <p> 98%+ accuracy on language classification </p>
         </div>
         """, unsafe_allow_html=True)
 
@@ -99,6 +100,10 @@ def show_home_page():
         </div>
         """, unsafe_allow_html=True)
 
+
+
+ensure_artifacts_exist()  # ensuring artifacts is there
+# Then proceeding to load models and prediction pipeline
 
 def show_prediction_page():
     st.markdown('<h1 class="main-header">🔮 Text Prediction</h1>', unsafe_allow_html=True)
