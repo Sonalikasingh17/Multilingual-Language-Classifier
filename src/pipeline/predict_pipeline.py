@@ -68,7 +68,7 @@ class PredictionPipeline:
             self.supported_languages = get_supported_languages()
             
             self._models_loaded = True
-            logger.info("✅ All models loaded successfully")
+            logger.info("All models loaded successfully")
             
         except Exception as e:
             logger.error(f"Error loading models: {str(e)}")

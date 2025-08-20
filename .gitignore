@@ -226,6 +226,7 @@ logs/
 
 # Streamlit
 .streamlit/
+.streamlit/secrets.toml
 
 # IDE
 .vscode/

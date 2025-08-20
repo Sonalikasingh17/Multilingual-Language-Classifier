@@ -64,11 +64,12 @@ def predict_text(text, task='both'):
         print(f" Prediction failed: {str(e)}")
         sys.exit(1)
 
+
 def main():
     """Main entry point"""
     parser = argparse.ArgumentParser(description="Multilingual Language Classifier")
 
-    parser.add_argument('command', choices=['train', 'predict', 'info', 'app'])
+    parser.add_argument('command', choices=['train', 'predict','info', 'app'])
     parser.add_argument('input', nargs='?', help='Input text for prediction')
     parser.add_argument('--task', choices=['language', 'continent', 'both'], default='both')
 
@@ -93,6 +94,7 @@ def main():
         elif args.command == 'app':
             print(" Launching Streamlit app...")
             os.system("streamlit run app.py")
+
 
     except Exception as e:
         print(f" Error: {str(e)}")
