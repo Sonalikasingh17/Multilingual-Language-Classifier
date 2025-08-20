@@ -2,4 +2,12 @@ numpy
 pandas
 matplotlib
 seaborn
-scikit
+
+scikit-learn
+streamlit
+datasets
+ipykernel
+
+gdown
+requests
+#-e .
