@@ -1,48 +1,48 @@
 # Core ML Libraries
-pandas==2.1.4
-numpy==1.24.3
-scikit-learn==1.3.2
-datasets==2.19.1
-huggingface-hub==0.22.2
+pandas
+numpy
+scikit-learn
+datasets
+huggingface-hub
 
 # Feature Engineering & NLP
-nltk==3.8.1
-langdetect==1.0.9
+nltk
+langdetect
 
 # Model Persistence
-joblib==1.3.2
-pickle-mixin==1.0.2
+joblib
+pickle-mixin
 
 # Web App & Deployment
-streamlit==1.33.0
-streamlit-option-menu==0.3.12
+streamlit
+streamlit-option-menu
 
 # Data Visualization
-matplotlib==3.8.2
-seaborn==0.13.0
-# plotly==5.18.0
+matplotlib
+seaborn
+plotly
 
 # Utility Libraries
-tqdm==4.66.2
-pyyaml==6.0.1
-python-dotenv==1.0.1
+tqdm
+pyyaml
+python-dotenv
 
 # Development & Testing
-pytest==8.1.1
-black==24.3.0
-flake8==7.0.0
+pytest
+black
+flake8
 
 # Cloud & API
-boto3==1.34.84
-requests==2.31.0
+boto3
+requests
 
 # System utilities
-psutil==5.9.8
+psutil
 
 # Additional ML utilities
-imbalanced-learn==0.11.0
+imbalanced-learn
 
-
+# other 
 gdown
 ipykernel
 ipywidgets 
