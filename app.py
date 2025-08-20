@@ -26,7 +26,7 @@ st.markdown("""
         font-size: 3rem;
         font-weight: bold;
         text-align: center;
-        color: olive;
+        color: olive !important;
         margin-bottom: 2rem;
         user-select: none;
 }
