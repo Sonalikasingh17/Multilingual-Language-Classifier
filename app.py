@@ -106,7 +106,7 @@ ensure_artifacts_exist()  # ensuring artifacts is there
 # Then proceeding to load models and prediction pipeline
 
 def show_prediction_page():
-    st.markdown('<h1 class="main-header" style="color: olive;>🔮 Text Prediction</h1>', unsafe_allow_html=True)
+    st.markdown('<h1 class="main-header" style="color: olive;">🔮 Text Prediction</h1>', unsafe_allow_html=True)
 
     # Initialize prediction pipeline
     if 'prediction_pipeline' not in st.session_state:
@@ -166,7 +166,7 @@ def show_prediction_page():
             st.warning("Please enter some text to analyze.")
 
 def show_training_page():
-    st.markdown('<h1 class="main-header" style="color: olive;>🛠️ Model Training</h1>', unsafe_allow_html=True)
+    st.markdown('<h1 class="main-header" style="color: olive;">🛠️ Model Training</h1>', unsafe_allow_html=True)
 
     st.warning("⚠️ Training requires significant computational resources and time.")
 
