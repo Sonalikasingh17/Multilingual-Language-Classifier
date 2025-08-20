@@ -19,23 +19,23 @@ logger = get_logger(__name__)
 def train_models():
     """Train all models using the training pipeline"""
     try:
-        logger.info("🚀 Starting model training...")
+        logger.info("Starting model training...")
 
         training_pipeline = TrainingPipeline()
         results = training_pipeline.start_training_pipeline()
 
         print("\n" + "="*60)
-        print("✅ TRAINING COMPLETED SUCCESSFULLY!")
+        print("TRAINING COMPLETED SUCCESSFULLY!")
         print("="*60)
-        print(f"📊 Language Classification Accuracy: {results['model_performance']['summary']['language_best_accuracy']:.2%}")
-        print(f"📊 Best Continent Classification: {results['model_performance']['summary']['continent_best_accuracy']:.2%}")
+        print(f"Language Classification Accuracy: {results['model_performance']['summary']['language_best_accuracy']:.2%}")
+        print(f"Best Continent Classification: {results['model_performance']['summary']['continent_best_accuracy']:.2%}")
         print("="*60)
 
         return results
 
     except Exception as e:
-        logger.error(f"❌ Training failed: {str(e)}")
-        print(f"❌ Training failed: {str(e)}")
+        logger.error(f"Training failed: {str(e)}")
+        print(f"Training failed: {str(e)}")
         sys.exit(1)
 
 def predict_text(text, task='both'):
@@ -45,23 +45,23 @@ def predict_text(text, task='both'):
 
         if task == 'language':
             result = pipeline.predict_language(text)
-            print(f"\n🎯 Language: {result['predicted_language']}")
-            print(f"   Continent: {result['predicted_continent']}")
+            print(f"\nLanguage: {result['predicted_language']}")
+            print(f" Continent: {result['predicted_continent']}")
 
         elif task == 'continent':
             result = pipeline.predict_continent(text)
-            print(f"\n🗺️ Continent: {result['predicted_continent']}")
+            print(f"\n Continent: {result['predicted_continent']}")
 
         else:  # both
             result = pipeline.predict_both(text)
-            print(f"\n🎯 Language: {result['language_prediction']['predicted_language']}")
+            print(f"\n Language: {result['language_prediction']['predicted_language']}")
             print(f"   Continent: {result['continent_prediction']['predicted_continent']}")
 
         return result
 
     except Exception as e:
-        logger.error(f"❌ Prediction failed: {str(e)}")
-        print(f"❌ Prediction failed: {str(e)}")
+        logger.error(f" Prediction failed: {str(e)}")
+        print(f" Prediction failed: {str(e)}")
         sys.exit(1)
 
 def main():
@@ -80,7 +80,7 @@ def main():
 
         elif args.command == 'predict':
             if not args.input:
-                print("❌ Error: Please provide input text for prediction")
+                print(" Error: Please provide input text for prediction")
                 sys.exit(1)
             predict_text(args.input, args.task)
 
@@ -91,11 +91,11 @@ def main():
             print(f"Status: {info['status']}")
 
         elif args.command == 'app':
-            print("🚀 Launching Streamlit app...")
+            print(" Launching Streamlit app...")
             os.system("streamlit run app.py")
 
     except Exception as e:
-        print(f"❌ Error: {str(e)}")
+        print(f" Error: {str(e)}")
         sys.exit(1)
 
 if __name__ == "__main__":

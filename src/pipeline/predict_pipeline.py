@@ -129,8 +129,11 @@ class PredictionPipeline:
                 'is_supported': predicted_language in self.supported_languages
             }
             
-            logger.info(f"Language prediction completed: {predicted_language} (confidence: {confidence:.4f if confidence else 'N/A'})")
-            
+            if confidence is not None:
+                logger.info(f"Language prediction completed: {predicted_language} (confidence: {confidence:.4f})")
+            else:
+                logger.info(f"Language prediction completed: {predicted_language} (confidence: N/A)")
+
             return result
             
         except Exception as e:
@@ -197,8 +200,11 @@ class PredictionPipeline:
                 'input_text': text,
                 'text_length': len(text)
             }
-            
-            logger.info(f"Continent prediction completed: {predicted_continent} using {model_type.upper()} (confidence: {confidence:.4f if confidence else 'N/A'})")
+
+            if confidence is not None:
+                logger.info(f"Continent prediction completed: {predicted_continent} using {model_type.upper()} (confidence: {confidence:.4f})")
+            else:
+                logger.info(f"Continent prediction completed: {predicted_continent} using {model_type.upper()} (confidence: N/A)")
             
             return result
             
