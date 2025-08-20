@@ -32,12 +32,11 @@ class PredictionPipeline:
     def __init__(self):
         # Make sure models exist first
         ensure_artifacts_exist()
-
-        # Proceed with loading models
-        self._load_models()
         self.config = PredictPipelineConfig()
         self._models_loaded = False
         self._load_models()
+
+        
     
     def _load_models(self):
         """Load all trained models and preprocessors"""
