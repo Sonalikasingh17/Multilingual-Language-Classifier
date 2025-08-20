@@ -8,6 +8,8 @@ from src.components.data_transformation import DataTransformation
 from src.components.model_trainer import ModelTrainer
 from src.exception import CustomException
 from src.logger import get_logger
+from src.utils import ensure_artifacts_exist
+
 
 logger = get_logger(__name__)
 
@@ -15,7 +17,7 @@ class TrainingPipeline:
     """
     Complete end-to-end training pipeline for multilingual language classification
     """
-    
+
     def __init__(self):
         self.data_ingestion = DataIngestion()
         self.data_transformation = DataTransformation()
@@ -28,6 +30,10 @@ class TrainingPipeline:
         Returns:
             Dict[str, Any]: Training results and performance metrics
         """
+
+        # Ensure models folder is populated before training or using pretrained models
+        ensure_artifacts_exist()
+        
         try:
             logger.info("Starting Multilingual Language Classification Training Pipeline")
             logger.info("=" * 80)
