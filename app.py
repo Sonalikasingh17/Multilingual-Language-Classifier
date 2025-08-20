@@ -9,6 +9,8 @@ sys.path.append(os.path.join(os.path.dirname(__file__), 'src'))
 from src.pipeline.predict_pipeline import PredictionPipeline, create_prediction_pipeline
 from src.pipeline.train_pipeline import TrainingPipeline
 
+hf_token = os.getenv("HUGGINGFACE_HUB_TOKEN")
+
 # Configure page
 st.set_page_config(
     page_title="Multilingual Language Classifier",
