@@ -15,41 +15,54 @@ from src.logger import get_logger
 
 logger = get_logger(__name__)
 
-
 def ensure_artifacts_exist():
-    KAGGLE_BASE_URL = "https://www.kaggle.com/datasets/sonalikasingh17/massive-pickle-files/download?file="
+    """Download all .pkl files from the Kaggle dataset once."""
+    KAGGLE_BASE = (
+        "https://www.kaggle.com/datasets/"
+        "sonalikasingh17/massive-pickle-files/download?file="
+    )
     artifact_files = [
+        # language pipeline  (for fast inference)
+        "language_pipeline.pkl",
+        # continent models
         "continent_lda_model.pkl",
         "continent_qda_model.pkl",
+        # vectorisers / reducers
         "continent_vectorizer.pkl",
         "continent_svd.pkl",
-        "continent_label_encoder.pkl"
-        "language_pipeline.pkl",
-        "language_vectorizer.pkl",
-        "language_model.pkl",
+        # label encoders
+        "continent_label_encoder.pkl",
         "label_encoder.pkl",
+        # optional extras
+        "language_model.pkl",
+        "language_vectorizer.pkl",
         "model_performance.pkl"
     ]
+
     os.makedirs("artifacts", exist_ok=True)
 
     for fname in artifact_files:
-        local_path = os.path.join("artifacts", fname)
-        if not os.path.exists(local_path):
-            # If inside Streamlit, show progress info, otherwise print
-            try:
-                st.info(f"Downloading {fname} from Kaggle...") 
-            except Exception:  # Not running in Streamlit context
-                print(f"Downloading {fname} from Kaggle...") 
-            url = KAGGLE_BASE_URL + fname
-            with requests.get(url, stream=True) as r:
-                r.raise_for_status()
-                with open(local_path, "wb") as f:
-                    for chunk in r.iter_content(chunk_size=8192):
-                        f.write(chunk)
-            try:
-                st.success(f"Downloaded {fname}")
-            except Exception:
-                print(f"Downloaded {fname}")
+        path = os.path.join("artifacts", fname)
+        if os.path.exists(path):
+            continue                                 
+
+        # user feedback (works both in Streamlit & CLI)
+        try:
+            st.info(f"Downloading {fname} from Kaggle…")
+        except Exception:
+            print(f"[INFO] Downloading {fname}")
+
+        url = KAGGLE_BASE + fname
+        with requests.get(url, stream=True) as r:
+            r.raise_for_status()
+            with open(path, "wb") as f:
+                for chunk in r.iter_content(chunk_size=8192):
+                    f.write(chunk)
+
+        try:
+            st.success(f"Downloaded {fname}")
+        except Exception:
+            print(f"[INFO] Downloaded {fname}")
 
 
 def save_object(file_path: str, obj: Any) -> None:
