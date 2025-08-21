@@ -50,8 +50,8 @@ st.markdown("""
 
 def main():
     # Sidebar
-    st.sidebar.title("Navigation")
-    page = st.sidebar.selectbox("Choose a page", ["🏠 Home", "🔮 Prediction", "🛠️ Training"])
+    st.sidebar.title("Navigation 📍")
+    page = st.sidebar.selectbox("Choose a page 👇", ["🏠 Home", "🔮 Prediction", "🛠️ Training"])
 
     if page == "🏠 Home":
         show_home_page()
