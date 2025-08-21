@@ -15,7 +15,8 @@ Focus on 27 **Roman-script languages**, build language-specific files from the M
 ---
 
 ## 🎥 Demo
-<img src="demo.gif" width="1000">
+
+
 
 ---
 
