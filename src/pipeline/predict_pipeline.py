@@ -7,7 +7,7 @@ from dataclasses import dataclass
 
 from src.exception import CustomException, ModelPredictionError
 from src.logger import get_logger
-from src.utils import load_object, get_supported_languages, get_language_continent_mapping, 
+from src.utils import load_object, get_supported_languages, get_language_continent_mapping
 
 logger = get_logger(__name__)
 
