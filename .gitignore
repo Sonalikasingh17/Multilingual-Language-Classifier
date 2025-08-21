@@ -209,7 +209,7 @@ __marimo__/
 
 
 # ML/Data specific
-*.pkl
+# *.pkl
 *.joblib
 artifacts/
 models/
