@@ -82,11 +82,14 @@ def save_object(file_path: str, obj: Any) -> None:
 
 def load_object(file_path: str) -> Any:
     """Load object from file using joblib"""
+
     try:
         if not os.path.exists(file_path):
             raise FileNotFoundError(f"File not found: {file_path}")
 
         with open(file_path, "rb") as file_obj:
+            print("DEBUG: File exists?", os.path.exists(file_path), "Path:", file_path)
+            print("DEBUG: File size:", os.path.getsize(file_path))
             obj = joblib.load(file_obj)
 
         logger.info(f"Object loaded successfully from {file_path}")
