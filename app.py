@@ -6,7 +6,6 @@ import os
 # Add src to path
 sys.path.append(os.path.join(os.path.dirname(__file__), 'src'))
 
-from src.utils import ensure_artifacts_exist
 from src.pipeline.predict_pipeline import PredictionPipeline, create_prediction_pipeline
 from src.pipeline.train_pipeline import TrainingPipeline
 
@@ -100,10 +99,6 @@ def show_home_page():
         </div>
         """, unsafe_allow_html=True)
 
-
-
-ensure_artifacts_exist()  # ensuring artifacts is there
-# Then proceeding to load models and prediction pipeline
 
 def show_prediction_page():
     st.markdown('<h1 class="main-header" style="color: olive;">🔮 Text Prediction</h1>', unsafe_allow_html=True)

@@ -7,7 +7,7 @@ from dataclasses import dataclass
 
 from src.exception import CustomException, ModelPredictionError
 from src.logger import get_logger
-from src.utils import load_object, get_supported_languages, get_language_continent_mapping, ensure_artifacts_exist
+from src.utils import load_object, get_supported_languages, get_language_continent_mapping, 
 
 logger = get_logger(__name__)
 
@@ -31,7 +31,6 @@ class PredictionPipeline:
     
     def __init__(self):
         # Make sure models exist first
-        ensure_artifacts_exist()
         self.config = PredictPipelineConfig()
         self._models_loaded = False
         self._load_models()
