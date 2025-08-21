@@ -67,7 +67,6 @@ source venv\Scripts\activate
 ### 3. Install Dependencies
 ```bash
 pip install -r requirements.txt
-pip install -e .
 ```
 
 ### 4. Train Models
