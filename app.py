@@ -6,7 +6,8 @@ import os
 # Add src to path
 sys.path.append(os.path.join(os.path.dirname(__file__), 'src'))
 
-from src.pipeline.predict_pipeline import PredictionPipeline, create_prediction_pipeline
+
+from src.pipeline.predict_pipeline import PredictionPipeline,create_prediction_pipeline
 from src.pipeline.train_pipeline import TrainingPipeline
 
 hf_token = os.getenv("HUGGINGFACE_HUB_TOKEN")
@@ -98,6 +99,7 @@ def show_home_page():
             <p>  Real-time predictions  </p>
         </div>
         """, unsafe_allow_html=True)
+
 
 
 def show_prediction_page():
