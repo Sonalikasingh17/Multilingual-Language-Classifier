@@ -17,10 +17,10 @@ Focus on 27 **Roman-script languages**, build language-specific files from the M
 ## 🎥 Demo
 
 <div style="display: flex; flex-wrap: wrap; gap: 8px;">
-  <img src="https://github.com/user-attachments/assets/faf7e739-85bd-4058-be74-f695e84727a1" alt="Screenshot 2025-08-22 005546" width="460"/>
-  <img src="https://github.com/user-attachments/assets/3e3b8686-c3b9-46dd-95cc-561e4c67c101" alt="Screenshot 2025-08-22 005601" width="460"/>
-  <img src="https://github.com/user-attachments/assets/861e8524-3493-41e8-b1f9-e9f90cfc4f35" alt="Screenshot 2025-08-22 005624" width="460"/>
-  <img src="https://github.com/user-attachments/assets/7b5bbf33-d59c-449b-b8ad-c6aff005d39d" alt="Screenshot 2025-08-20 235157" width="460"/>
+  <img src="https://github.com/user-attachments/assets/faf7e739-85bd-4058-be74-f695e84727a1" alt="Screenshot 2025-08-22 005546" width="360"/>
+  <img src="https://github.com/user-attachments/assets/3e3b8686-c3b9-46dd-95cc-561e4c67c101" alt="Screenshot 2025-08-22 005601" width="360"/>
+  <img src="https://github.com/user-attachments/assets/861e8524-3493-41e8-b1f9-e9f90cfc4f35" alt="Screenshot 2025-08-22 005624" width="360"/>
+  <img src="https://github.com/user-attachments/assets/7b5bbf33-d59c-449b-b8ad-c6aff005d39d" alt="Screenshot 2025-08-20 235157" width="360"/>
 </div>
 
 ---
